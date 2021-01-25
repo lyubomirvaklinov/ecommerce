@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { GlobalStyles, Main } from './AppStyles';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import ProductsPage from './components/Products/ProductsPage';
+import BasketPage from './components/Basket/BasketPage';
+import HeaderBar from './components/Header/HeaderBar';
+import Wishlist from './components/Wishlist/Wishlist';
 
 function App() {
+  const [wishlistState, setWishlistState] = useState<boolean>(false);
+
+  const showWishlistConditinally = () => {
+    return wishlistState && <Wishlist />;
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <GlobalStyles />
+      <HeaderBar drawerState={wishlistState} toggleDrawer={setWishlistState} />
+      {showWishlistConditinally()}
+      <Switch>
+        <Route
+          path="/products"
+          component={() => <ProductsPage wishlistState={wishlistState} />}
+        />
+        <Route path="/basket" component={() => <BasketPage />} />
+        <Redirect to="/products" />
+      </Switch>
+    </Main>
   );
 }
 
