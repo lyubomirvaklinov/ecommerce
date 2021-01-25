@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GlobalStyles, Main } from './AppStyles';
+import { GlobalStyles, MainContainer } from './AppStyles';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import ProductsPage from './components/Products/ProductsPage';
 import BasketPage from './components/Basket/BasketPage';
@@ -13,19 +13,16 @@ function App() {
     return wishlistState && <Wishlist />;
   };
   return (
-    <Main>
+    <MainContainer>
       <GlobalStyles />
       <HeaderBar drawerState={wishlistState} toggleDrawer={setWishlistState} />
       {showWishlistConditinally()}
       <Switch>
-        <Route
-          path="/products"
-          component={() => <ProductsPage wishlistState={wishlistState} />}
-        />
+        <Route path="/products" component={() => <ProductsPage />} />
         <Route path="/basket" component={() => <BasketPage />} />
         <Redirect to="/products" />
       </Switch>
-    </Main>
+    </MainContainer>
   );
 }
 

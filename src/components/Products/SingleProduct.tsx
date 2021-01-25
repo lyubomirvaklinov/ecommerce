@@ -31,12 +31,14 @@ export default function SingleProduct({ product }: Props): ReactElement {
   const [disabled, setDisabled] = useState(false);
 
   const disableAddBasket =
+    currentState.basket &&
     currentState?.basket?.items.filter((item) => item.id === product.id)
       .length !== 0;
 
   const inWishList =
+    currentState.wishlist &&
     currentState?.wishlist.filter((item) => item.id === product.id).length !==
-    0;
+      0;
 
   const renderButtonsConditionally = () => {
     return !inWishList ? (

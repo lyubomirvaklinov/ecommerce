@@ -25,7 +25,7 @@ export interface AppContextInterface {
   dispatch: any;
 }
 
-function reducer(state: any, action: ActionInterface) {
+function reducer(state: ApplicationState, action: ActionInterface) {
   switch (action.type) {
     case 'setAllProducts':
       return { ...state, products: action.payload };

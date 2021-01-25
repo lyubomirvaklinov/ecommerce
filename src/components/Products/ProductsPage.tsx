@@ -12,11 +12,9 @@ import {
 } from './ProductsPageStyle';
 import SingleProduct from './SingleProduct';
 
-interface Props {
-  wishlistState: boolean;
-}
+interface Props {}
 
-export default function ProductsPage({ wishlistState }: Props): ReactElement {
+export default function ProductsPage({}: Props): ReactElement {
   const { currentState } = useContext(AppContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(4);

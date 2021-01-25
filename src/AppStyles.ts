@@ -13,6 +13,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const Main = styled.div`
+export const MainContainer = styled.div`
   margin: auto;
 `;

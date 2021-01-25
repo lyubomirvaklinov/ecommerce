@@ -1,9 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
-import {
-  getWishlistContent,
-  removeFromWishlist,
-} from '../../context/actions/wishlistActions';
-import { AppContext } from '../../context/context';
+
 import { Product } from '../../types/Product';
 import {
   RemoveFromWishListBtn,
@@ -13,28 +9,20 @@ import {
 
 interface Props {
   product: Product;
+  removeFromList: (id: number) => void;
 }
 
-export default function WishlistProduct({ product }: Props): ReactElement {
-  const { dispatch } = useContext(AppContext);
-
+export default function WishlistProduct({
+  product,
+  removeFromList,
+}: Props): ReactElement {
   return (
     <WishlistContentWrapper>
       <h3>My Wishlist</h3>
 
       <WishlistImage src={product.image} />
       <div>{product.name}</div>
-      <RemoveFromWishListBtn
-        onClick={() =>
-          removeFromWishlist(product.id).then((response) => {
-            if (response?.success) {
-              getWishlistContent().then((res) => {
-                dispatch({ type: 'setWishlist', payload: res });
-              });
-            }
-          })
-        }
-      >
+      <RemoveFromWishListBtn onClick={() => removeFromList(product.id)}>
         Remove
       </RemoveFromWishListBtn>
     </WishlistContentWrapper>
