@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { darkBlueDisabled, darkBlue } from './../../common/colors';
 import { borderRadius10px } from '../../common/commonStyles';
 
 export const PaginationBtnContainer = styled.div`
@@ -16,14 +17,19 @@ export const PaginationBtn = styled.button`
   ${borderRadius10px};
 
   cursor: pointer;
-  background-color: #333d51;
+  background-color: ${darkBlue};
   color: #f4f3ea;
 
   padding: 5px 0px;
 
+  &:hover {
+    transition: 0.3s;
+    ${darkBlueDisabled}
+  }
+
   ${(props) =>
     props.disabled &&
     css`
-      background-color: rgba(51, 61, 81, 0.5);
+      ${darkBlueDisabled}
     `}
 `;
