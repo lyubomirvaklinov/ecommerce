@@ -1,6 +1,5 @@
 import React, { ReactElement, useContext, useState } from 'react';
 import { AppContext } from '../../context/context';
-import { Product } from '../../types/Product';
 import Pagination from '../Pagination/Pagination';
 import { getCurrentProducts } from '../Pagination/utils';
 

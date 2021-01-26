@@ -1,9 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { getAllProducts } from '../context/actions/productsActions';
-import {
-  addToBasket,
-  getBasketContent,
-} from '../context/actions/basketActions';
+import { getBasketContent } from '../context/actions/basketActions';
 import { Product } from '../types/Product';
 import { Basket } from '../types/Basket';
 import { getWishlistContent } from './actions/wishlistActions';
@@ -60,6 +57,9 @@ export function AppContextProvider({ children }: any) {
   useEffect(() => {
     getAllProducts().then((res) =>
       dispatch({ type: 'setAllProducts', payload: res })
+    );
+    getBasketContent().then((res) =>
+      dispatch({ type: 'setProductsInBasket', payload: res })
     );
     getWishlistContent().then((res) => {
       dispatch({ type: 'setWishlist', payload: res });

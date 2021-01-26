@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useContext } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import {
   getBasketContent,
   removeFromBasket,
@@ -20,12 +20,6 @@ interface Props {}
 
 export default function BasketPage({}: Props): ReactElement {
   const { currentState, dispatch } = useContext(AppContext);
-
-  useEffect(() => {
-    getBasketContent().then((res) =>
-      dispatch({ type: 'setProductsInBasket', payload: res })
-    );
-  }, []);
 
   const removeItem = (id: number) => {
     removeFromBasket(id).then((res: any) => {
